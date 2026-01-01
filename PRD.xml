@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PRD version="1.0.0" status="LOCKED">
+<!--
+  PRD VERSION: 1.0.0
+  DATE: 2025-12-31
+  STATUS: GENESIS PRD
+  NOTE:
+  This is the authoritative, human-authored PRD for the startup described below.
+  This document is the single source of truth governing all AI-assisted planning,
+  coding, debugging, deployment, orchestration, and teaching.
+-->
+
+<ProductRequirementsDocument>
 
   <!-- ========================================================= -->
   <!-- PRODUCT OVERVIEW                                         -->
   <!-- ========================================================= -->
   <ProductOverview>
+    <!-- Target user is intentionally narrow to prevent scope creep -->
     <TargetUser>
-      Solo developers, technical students, and early-career engineers who use AI to build software projects and need to prevent scope creep, hallucinated architecture, and unintended code changes.
+      Solo founders and small technical teams building web-based startups using
+      multiple AI models who require deterministic execution, governance, and
+      lossless context transfer.
     </TargetUser>
 
     <CoreProblem>
-      AI-assisted coding accelerates development but introduces uncontrolled changes, architectural drift, hallucinated features, and broken deployments due to the absence of enforceable specifications.
+      AI models are powerful individually but unreliable when collaborating.
+      Context loss, silent assumptions, scope drift, and inconsistent decisions
+      force humans to manually relay instructions, debug AI behavior, and reconcile
+      outputs across tools.
     </CoreProblem>
 
     <ValueProposition>
-      AI Project Governor enforces a single source of truth for AI-assisted development by validating all proposed changes against a formal PRD before implementation.
+      This product turns a Product Requirements Document (PRD) written in strict XML
+      into an enforceable execution contract that governs how multiple AI models
+      plan, build, debug, deploy, and teach without manual coordination.
     </ValueProposition>
 
     <ImmutableStackConfirmation>
-      <UX_UI_SourceOfTruth>Figma</UX_UI_SourceOfTruth>
-      <BackendAndDatabase>Supabase</BackendAndDatabase>
-      <Payments>Stripe</Payments>
-      <HostingAndDeployment>Vercel</HostingAndDeployment>
-      <CodeSourceOfTruth>GitHub</CodeSourceOfTruth>
-      <AdvancedReasoning>Claude</AdvancedReasoning>
-      <OrchestrationAndExecution>n8n</OrchestrationAndExecution>
+      <!-- Any deviation from this stack is prohibited unless explicitly approved -->
+      Figma for UX/UI authority.
+      Supabase for backend services, authentication, and database.
+      Stripe for payments and monetization.
+      Vercel for hosting and deployment.
+      GitHub as the sole source of code and artifacts.
+      Claude for advanced reasoning, architecture, refactors, and debugging.
+      ChatGPT for generation, structuring, summarization, and coordination.
+      n8n for orchestration and execution.
     </ImmutableStackConfirmation>
   </ProductOverview>
 
@@ -33,42 +53,38 @@
   <!-- ========================================================= -->
   <TechStack>
     <Frontend>
-      <Framework>Next.js (App Router) with TypeScript</Framework>
+      Web-based frontend built to reflect Figma designs exactly.
     </Frontend>
 
     <Backend>
-      <Platform>Supabase</Platform>
-      <Runtime>Supabase Edge Functions (TypeScript)</Runtime>
+      Supabase-managed backend logic with server-side enforcement of PRD rules.
     </Backend>
 
     <Database>
-      <Provider>Supabase Postgres</Provider>
+      Supabase Postgres database.
     </Database>
 
     <Auth>
-      <Provider>Supabase Auth</Provider>
+      Supabase Auth with role-based access controls.
     </Auth>
 
     <Payments>
-      <Provider>Stripe</Provider>
-      <Status>Deferred until post-MVP</Status>
+      Stripe used exclusively for billing and subscription management.
     </Payments>
 
     <Deployment>
-      <Provider>Vercel</Provider>
+      Vercel used for all production and preview deployments.
     </Deployment>
 
     <AIProviders>
-      <Claude>
-        <Responsibilities>
-          Architecture reasoning, PRD validation, rule enforcement, explanation of violations.
-        </Responsibilities>
-      </Claude>
-      <ChatGPT>
-        <Responsibilities>
-          PRD interpretation, workflow orchestration, summaries, and coordination.
-        </Responsibilities>
-      </ChatGPT>
+      <Provider name="ChatGPT">
+        Responsibilities include structuring, summarizing, coordinating workflows,
+        generating boilerplate, and producing handoff artifacts.
+      </Provider>
+      <Provider name="Claude">
+        Responsibilities include architecture decisions, deep debugging,
+        refactoring, and validation of complex logic.
+      </Provider>
     </AIProviders>
   </TechStack>
 
@@ -76,115 +92,136 @@
   <!-- FILE STRUCTURE                                           -->
   <!-- ========================================================= -->
   <FileStructure>
-    <RepositoryRoot>
-      <Directory name="apps">
-        <Directory name="web" />
-      </Directory>
-      <Directory name="supabase">
-        <Directory name="functions" />
-        <Directory name="migrations" />
-      </Directory>
-      <Directory name="n8n">
-        <Directory name="workflows" />
-      </Directory>
-      <File name="PRD.xml" />
-      <File name="README.md" />
-      <File name=".env.example" />
-    </RepositoryRoot>
+    <!-- Optimized for AI navigation and minimal token usage -->
+    <RepositoryTree>
+      /frontend
+        /components
+        /pages
+        /styles
+      /backend
+        /api
+        /services
+      /shared
+        /schemas
+        /utils
+      /n8n
+        /workflows
+      /docs
+      /config
+      README.md
+    </RepositoryTree>
   </FileStructure>
 
   <!-- ========================================================= -->
   <!-- NAMING CONVENTIONS                                       -->
   <!-- ========================================================= -->
   <NamingConventions>
-    <Files casing="kebab-case" />
-    <Components casing="PascalCase" />
-    <API_Routes casing="kebab-case" />
-    <DatabaseTables casing="snake_case" />
-    <DatabaseFields casing="snake_case" />
+    <Files>kebab-case</Files>
+    <Components>PascalCase</Components>
+    <Hooks>camelCase prefixed with use</Hooks>
+    <ApiRoutes>kebab-case</ApiRoutes>
+    <DatabaseTables>snake_case</DatabaseTables>
+    <DatabaseFields>snake_case</DatabaseFields>
   </NamingConventions>
 
   <!-- ========================================================= -->
   <!-- DESIGN SYSTEM                                            -->
   <!-- ========================================================= -->
   <DesignSystem>
-    <Authority>Figma</Authority>
-    <Mood>Minimal, calm, authoritative, developer-first</Mood>
+    <FigmaAuthority>
+      Figma is the single source of truth for all UI and UX decisions.
+    </FigmaAuthority>
+
+    <Typography>
+      <!-- Placeholder until defined in Figma -->
+      <PrimaryFont>PLACEHOLDER</PrimaryFont>
+    </Typography>
+
+    <ColorPalette>
+      <!-- Semantic meaning only, values defined in Figma -->
+      <Primary>PLACEHOLDER</Primary>
+      <Secondary>PLACEHOLDER</Secondary>
+      <Error>PLACEHOLDER</Error>
+    </ColorPalette>
+
+    <ComponentStandards>
+      Components must be reusable, stateless where possible, and derived directly
+      from Figma components.
+    </ComponentStandards>
   </DesignSystem>
+
+  <!-- ========================================================= -->
+  <!-- SCREENS AND USER FLOW                                    -->
+  <!-- ========================================================= -->
+  <ScreensAndUserFlow>
+    <Screens>
+      Landing
+      Authentication
+      PRDEditor
+      ValidationDashboard
+      WorkflowExecutionView
+    </Screens>
+
+    <OnboardingFlow>
+      User signs up, connects GitHub, uploads or creates initial PRD.
+    </OnboardingFlow>
+
+    <EdgeCases>
+      Empty PRD, invalid XML, conflicting rules.
+    </EdgeCases>
+  </ScreensAndUserFlow>
 
   <!-- ========================================================= -->
   <!-- CORE FEATURES                                            -->
   <!-- ========================================================= -->
   <CoreFeatures>
-    <Feature>
-      <Name>PRD Enforcement Engine</Name>
 
+    <Feature name="PRDIngestionAndValidation">
       <Purpose>
-        Validate all proposed code changes against the authoritative PRD before implementation.
+        Parse, validate, and store PRDs as immutable execution contracts.
       </Purpose>
 
-      <Inputs>
-        PRD.xml, ProposedChange (diff, file list, or prompt), RepositoryContext
-      </Inputs>
-
-      <Outputs>
-        Decision (APPROVED | BLOCKED | REQUIRES_PRD_UPDATE), Explanation, Violations
-      </Outputs>
+      <Inputs>XML PRD document</Inputs>
+      <Outputs>Validated PRD state</Outputs>
 
       <Dependencies>
-        Claude, GitHub, n8n
+        XML schema validation, Supabase storage.
       </Dependencies>
 
-      <Logic>
-        <PseudoCode>
-<![CDATA[
-Parse PRD.xml
-If PRD invalid → BLOCK
-
-Normalize proposed change
-Extract PRD constraints
-
-For each constraint:
-  If violated → record violation
-
-If no violations → APPROVE
-If forbidden violation → BLOCK
-Else → REQUIRE PRD UPDATE
-]]>
-        </PseudoCode>
-      </Logic>
+      <PseudoCode>
+        if PRD.invalid:
+          block_execution()
+          explain_error()
+      </PseudoCode>
     </Feature>
+
+    <Feature name="AIActionEnforcement">
+      <Purpose>
+        Validate every AI-proposed action against the PRD before execution.
+      </Purpose>
+
+      <SideEffects>
+        Blocks non-compliant actions and logs violations.
+      </SideEffects>
+    </Feature>
+
   </CoreFeatures>
 
   <!-- ========================================================= -->
   <!-- DATABASE SCHEMA                                          -->
   <!-- ========================================================= -->
   <DatabaseSchema>
-    <Table>
-      <Name>validation_runs</Name>
-      <Fields>
-        <Field>
-          <Name>id</Name>
-          <Type>uuid</Type>
-          <Constraint>primary key</Constraint>
-        </Field>
-        <Field>
-          <Name>created_at</Name>
-          <Type>timestamp</Type>
-        </Field>
-        <Field>
-          <Name>decision</Name>
-          <Type>text</Type>
-        </Field>
-        <Field>
-          <Name>summary</Name>
-          <Type>text</Type>
-        </Field>
-        <Field>
-          <Name>violations</Name>
-          <Type>jsonb</Type>
-        </Field>
-      </Fields>
+    <Table name="prds">
+      <Field name="id" type="uuid" />
+      <Field name="xml" type="text" />
+      <Field name="version" type="text" />
+      <Constraints>id is primary key</Constraints>
+    </Table>
+
+    <Table name="violations">
+      <Field name="id" type="uuid" />
+      <Field name="prd_id" type="uuid" />
+      <Field name="description" type="text" />
     </Table>
   </DatabaseSchema>
 
@@ -192,43 +229,85 @@ Else → REQUIRE PRD UPDATE
   <!-- SECURITY AND COMPLIANCE                                  -->
   <!-- ========================================================= -->
   <SecurityAndCompliance>
-    <FrontendSecurity>
-      <Rule>NO_SECRETS_IN_CLIENT</Rule>
-    </FrontendSecurity>
+    <Rules>
+      Secrets must never be stored in frontend code.
+      Rate limiting enforced at API boundaries.
+    </Rules>
   </SecurityAndCompliance>
 
   <!-- ========================================================= -->
   <!-- AI CODING RULES                                          -->
   <!-- ========================================================= -->
   <AICodingRules>
-    <Rule>AI_MUST_CITE_PRD_SECTION_FOR_EACH_DECISION</Rule>
-    <Rule>AI_MUST_DEFAULT_TO_BLOCK_ON_UNCERTAINTY</Rule>
-    <Rule>AI_MUST_NOT_IMPLEMENT_CODE_AFTER_BLOCK</Rule>
-    <Rule>NO_SCOPE_EXPANSION</Rule>
+    <Rule>AI must debug automatically before implementation.</Rule>
+    <Rule>AI must propose fixes before applying them.</Rule>
+    <Rule>AI must not refactor unrelated files.</Rule>
+    <Rule>AI must treat this PRD and GitHub as authoritative.</Rule>
   </AICodingRules>
+
+  <!-- ========================================================= -->
+  <!-- AGENT ROLES                                              -->
+  <!-- ========================================================= -->
+  <AgentRoles>
+    <FeatureImplementationAgent>
+      <Responsibilities>Implement features exactly as specified.</Responsibilities>
+      <ForbiddenActions>Scope expansion.</ForbiddenActions>
+    </FeatureImplementationAgent>
+
+    <DebugAndRefactorAgent>
+      <Responsibilities>Diagnose and fix issues.</Responsibilities>
+    </DebugAndRefactorAgent>
+  </AgentRoles>
 
   <!-- ========================================================= -->
   <!-- N8N WORKFLOWS                                            -->
   <!-- ========================================================= -->
   <N8NWorkflows>
-    <Workflow name="PRD_Validation_Pipeline">
-      <Steps>
-        <Step>Receive PRD and Proposed Change</Step>
-        <Step>Send context to Claude</Step>
-        <Step>Receive validation decision</Step>
-        <Step>Store result in Supabase</Step>
-        <Step>Return decision</Step>
-      </Steps>
-    </Workflow>
+    <Workflow name="IntentIngestion" />
+    <Workflow name="FeatureBuild" />
+    <Workflow name="Deployment" />
   </N8NWorkflows>
+
+  <!-- ========================================================= -->
+  <!-- CROSS-AI COMMUNICATION                                   -->
+  <!-- ========================================================= -->
+  <CrossAICommunication>
+    <!-- Lossless handoff format -->
+    <HandoffFormat>
+      ContextSummary
+      DecisionsMade
+      OpenQuestions
+      FilesTouched
+      NextActions
+    </HandoffFormat>
+  </CrossAICommunication>
+
+  <!-- ========================================================= -->
+  <!-- COACHING AND TEACHING                                    -->
+  <!-- ========================================================= -->
+  <CoachingAndTeaching>
+    <Principles>
+      Teach patterns, not trivia.
+      Never block execution.
+    </Principles>
+  </CoachingAndTeaching>
 
   <!-- ========================================================= -->
   <!-- CONSTRAINTS                                              -->
   <!-- ========================================================= -->
   <Constraints>
     <NonGoals>
-      Code generation, refactoring automation, feature ideation, project management.
+      No mobile app.
+      No alternative tech stack.
     </NonGoals>
   </Constraints>
 
-</PRD>
+  <!-- ========================================================= -->
+  <!-- VERSIONING                                               -->
+  <!-- ========================================================= -->
+  <VersioningAndChangelog>
+    <Version>1.0.0</Version>
+    <Summary>Initial genesis PRD.</Summary>
+  </VersioningAndChangelog>
+
+</ProductRequirementsDocument>
