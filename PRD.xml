@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRD version="1.0.0" status="LOCKED">
+
+  <!-- ========================================================= -->
+  <!-- PRODUCT OVERVIEW                                         -->
+  <!-- ========================================================= -->
+  <ProductOverview>
+    <TargetUser>
+      Solo developers, technical students, and early-career engineers who use AI to build software projects and need to prevent scope creep, hallucinated architecture, and unintended code changes.
+    </TargetUser>
+
+    <CoreProblem>
+      AI-assisted coding accelerates development but introduces uncontrolled changes, architectural drift, hallucinated features, and broken deployments due to the absence of enforceable specifications.
+    </CoreProblem>
+
+    <ValueProposition>
+      AI Project Governor enforces a single source of truth for AI-assisted development by validating all proposed changes against a formal PRD before implementation.
+    </ValueProposition>
+
+    <ImmutableStackConfirmation>
+      <UX_UI_SourceOfTruth>Figma</UX_UI_SourceOfTruth>
+      <BackendAndDatabase>Supabase</BackendAndDatabase>
+      <Payments>Stripe</Payments>
+      <HostingAndDeployment>Vercel</HostingAndDeployment>
+      <CodeSourceOfTruth>GitHub</CodeSourceOfTruth>
+      <AdvancedReasoning>Claude</AdvancedReasoning>
+      <OrchestrationAndExecution>n8n</OrchestrationAndExecution>
+    </ImmutableStackConfirmation>
+  </ProductOverview>
+
+  <!-- ========================================================= -->
+  <!-- TECH STACK                                               -->
+  <!-- ========================================================= -->
+  <TechStack>
+    <Frontend>
+      <Framework>Next.js (App Router) with TypeScript</Framework>
+    </Frontend>
+
+    <Backend>
+      <Platform>Supabase</Platform>
+      <Runtime>Supabase Edge Functions (TypeScript)</Runtime>
+    </Backend>
+
+    <Database>
+      <Provider>Supabase Postgres</Provider>
+    </Database>
+
+    <Auth>
+      <Provider>Supabase Auth</Provider>
+    </Auth>
+
+    <Payments>
+      <Provider>Stripe</Provider>
+      <Status>Deferred until post-MVP</Status>
+    </Payments>
+
+    <Deployment>
+      <Provider>Vercel</Provider>
+    </Deployment>
+
+    <AIProviders>
+      <Claude>
+        <Responsibilities>
+          Architecture reasoning, PRD validation, rule enforcement, explanation of violations.
+        </Responsibilities>
+      </Claude>
+      <ChatGPT>
+        <Responsibilities>
+          PRD interpretation, workflow orchestration, summaries, and coordination.
+        </Responsibilities>
+      </ChatGPT>
+    </AIProviders>
+  </TechStack>
+
+  <!-- ========================================================= -->
+  <!-- FILE STRUCTURE                                           -->
+  <!-- ========================================================= -->
+  <FileStructure>
+    <RepositoryRoot>
+      <Directory name="apps">
+        <Directory name="web" />
+      </Directory>
+      <Directory name="supabase">
+        <Directory name="functions" />
+        <Directory name="migrations" />
+      </Directory>
+      <Directory name="n8n">
+        <Directory name="workflows" />
+      </Directory>
+      <File name="PRD.xml" />
+      <File name="README.md" />
+      <File name=".env.example" />
+    </RepositoryRoot>
+  </FileStructure>
+
+  <!-- ========================================================= -->
+  <!-- NAMING CONVENTIONS                                       -->
+  <!-- ========================================================= -->
+  <NamingConventions>
+    <Files casing="kebab-case" />
+    <Components casing="PascalCase" />
+    <API_Routes casing="kebab-case" />
+    <DatabaseTables casing="snake_case" />
+    <DatabaseFields casing="snake_case" />
+  </NamingConventions>
+
+  <!-- ========================================================= -->
+  <!-- DESIGN SYSTEM                                            -->
+  <!-- ========================================================= -->
+  <DesignSystem>
+    <Authority>Figma</Authority>
+    <Mood>Minimal, calm, authoritative, developer-first</Mood>
+  </DesignSystem>
+
+  <!-- ========================================================= -->
+  <!-- CORE FEATURES                                            -->
+  <!-- ========================================================= -->
+  <CoreFeatures>
+    <Feature>
+      <Name>PRD Enforcement Engine</Name>
+
+      <Purpose>
+        Validate all proposed code changes against the authoritative PRD before implementation.
+      </Purpose>
+
+      <Inputs>
+        PRD.xml, ProposedChange (diff, file list, or prompt), RepositoryContext
+      </Inputs>
+
+      <Outputs>
+        Decision (APPROVED | BLOCKED | REQUIRES_PRD_UPDATE), Explanation, Violations
+      </Outputs>
+
+      <Dependencies>
+        Claude, GitHub, n8n
+      </Dependencies>
+
+      <Logic>
+        <PseudoCode>
+<![CDATA[
+Parse PRD.xml
+If PRD invalid → BLOCK
+
+Normalize proposed change
+Extract PRD constraints
+
+For each constraint:
+  If violated → record violation
+
+If no violations → APPROVE
+If forbidden violation → BLOCK
+Else → REQUIRE PRD UPDATE
+]]>
+        </PseudoCode>
+      </Logic>
+    </Feature>
+  </CoreFeatures>
+
+  <!-- ========================================================= -->
+  <!-- DATABASE SCHEMA                                          -->
+  <!-- ========================================================= -->
+  <DatabaseSchema>
+    <Table>
+      <Name>validation_runs</Name>
+      <Fields>
+        <Field>
+          <Name>id</Name>
+          <Type>uuid</Type>
+          <Constraint>primary key</Constraint>
+        </Field>
+        <Field>
+          <Name>created_at</Name>
+          <Type>timestamp</Type>
+        </Field>
+        <Field>
+          <Name>decision</Name>
+          <Type>text</Type>
+        </Field>
+        <Field>
+          <Name>summary</Name>
+          <Type>text</Type>
+        </Field>
+        <Field>
+          <Name>violations</Name>
+          <Type>jsonb</Type>
+        </Field>
+      </Fields>
+    </Table>
+  </DatabaseSchema>
+
+  <!-- ========================================================= -->
+  <!-- SECURITY AND COMPLIANCE                                  -->
+  <!-- ========================================================= -->
+  <SecurityAndCompliance>
+    <FrontendSecurity>
+      <Rule>NO_SECRETS_IN_CLIENT</Rule>
+    </FrontendSecurity>
+  </SecurityAndCompliance>
+
+  <!-- ========================================================= -->
+  <!-- AI CODING RULES                                          -->
+  <!-- ========================================================= -->
+  <AICodingRules>
+    <Rule>AI_MUST_CITE_PRD_SECTION_FOR_EACH_DECISION</Rule>
+    <Rule>AI_MUST_DEFAULT_TO_BLOCK_ON_UNCERTAINTY</Rule>
+    <Rule>AI_MUST_NOT_IMPLEMENT_CODE_AFTER_BLOCK</Rule>
+    <Rule>NO_SCOPE_EXPANSION</Rule>
+  </AICodingRules>
+
+  <!-- ========================================================= -->
+  <!-- N8N WORKFLOWS                                            -->
+  <!-- ========================================================= -->
+  <N8NWorkflows>
+    <Workflow name="PRD_Validation_Pipeline">
+      <Steps>
+        <Step>Receive PRD and Proposed Change</Step>
+        <Step>Send context to Claude</Step>
+        <Step>Receive validation decision</Step>
+        <Step>Store result in Supabase</Step>
+        <Step>Return decision</Step>
+      </Steps>
+    </Workflow>
+  </N8NWorkflows>
+
+  <!-- ========================================================= -->
+  <!-- CONSTRAINTS                                              -->
+  <!-- ========================================================= -->
+  <Constraints>
+    <NonGoals>
+      Code generation, refactoring automation, feature ideation, project management.
+    </NonGoals>
+  </Constraints>
+
+</PRD>
